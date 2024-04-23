@@ -10,6 +10,10 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """function that takes in two integers and runs a given
         async function multiple times"""
+    flag = False
+    if max_delay < 0:
+        max_delay *= -1
+        flag = True
     pending_tasks = [wait_random(max_delay) for i in range(n)]
     result = []
 
@@ -19,4 +23,7 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         completed_task, pending_tasks = tasks
         for task in completed_task:
             result.append(task.result())
+    if flag:
+        result.reverse()
+        result = [value * -1 for value in result]
     return result

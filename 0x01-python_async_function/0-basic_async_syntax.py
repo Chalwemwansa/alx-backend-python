@@ -10,8 +10,9 @@ async def wait_random(max_delay: int = 10) -> float:
     the float of the number of seconds it waits before printing a value"""
     if max_delay > 0:
         rand = random.uniform(0, max_delay + 1)
+    elif max_delay < 0:
+        rand = random.uniform(0, max_delay - 1)
     else:
-        max_delay = 0
         rand = random.uniform(0, max_delay)
     await asyncio.sleep(rand)
     return (rand)
