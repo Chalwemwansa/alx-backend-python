@@ -5,7 +5,7 @@ import asyncio
 import random
 
 
-async def wait_random(max_delay=10):
+async def wait_random(max_delay: int = 10) -> float:
     """the function that delays for a given number of seconds then prints
     the float of the number of seconds it waits before printing a value"""
     rand = random.uniform(0, max_delay + 1)
